@@ -45,6 +45,9 @@ class Trump(PlayingCard):
     
     def __repr__(self):
         return "Trump({})".format(self.get_value())
+    
+    def get_suit(self): 
+        return 'T'
 
     def __eq__(self, other):
         if isinstance(other,Trump):
@@ -111,3 +114,19 @@ class Excuse(PlayingCard):
     
     def __repr__(self):
         return "Excuse()"
+    
+    def get_suit(self):
+        return 'T'
+
+
+    def winner(trick):
+    """Allows to define the winner (1, 2, 3 or 4) of the trick"""
+    #pli=[(deck[45],1),(deck[43],2),(deck[42],3),(deck[2],4)]
+      Cardw=trick[0][0]
+      w=trick[0][1]
+      for i in range(1,4):
+         if trick[i][0].color()==Cardw.color() and trick[i][0].get_value()>Cardw.get_value():
+               Cardw=trick[i][0];w=trick[i][1]
+         elif trick[i][0].color()!=Cardw.color() and (trick[i][0].color()== 'T'and trick[i][0].get_value()!=0):
+               Cardw=trick[i][0];w=trick[i][1]
+      return w
